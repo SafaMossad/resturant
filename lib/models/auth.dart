@@ -1,0 +1,2 @@
+enum AuthMode { Signup,
+  Login }
