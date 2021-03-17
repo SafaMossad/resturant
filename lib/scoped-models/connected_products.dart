@@ -63,7 +63,7 @@ class ProductsModel extends ConnectedProductsModel {
     try {
       final http.Response response = await http.post(
            //'https://flutter-products-1c263.firebaseio.com/products/${selectedProduct.id}.json?auth=${_authenticatedUser.token}',
-          'https://flutter-products-1c263.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
+          'https://shop-fcfad-default-rtdb.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
 
           body: json.encode(productData));
 
@@ -86,6 +86,7 @@ class ProductsModel extends ConnectedProductsModel {
       notifyListeners();
       return true;
     } catch (error) {
+      print("errror");
       _isLoading = false;
       notifyListeners();
       return false;
@@ -113,7 +114,7 @@ class ProductsModel extends ConnectedProductsModel {
     return http
         .put(
            // 'https://flutter-products-1c263.firebaseio.com/products/${selectedProduct.id}.json?auth=${_authenticatedUser.token}',
-        'https://flutter-products-1c263.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
+        'https://shop-fcfad-default-rtdb.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
 
         body: json.encode(updateData))
         .then((http.Response reponse) {
@@ -145,7 +146,7 @@ class ProductsModel extends ConnectedProductsModel {
     return http
         .delete(
            // 'https://flutter-products-1c263.firebaseio.com/products/${deletedProductId}.json?auth=${_authenticatedUser.token}'
-      'https://flutter-products-1c263.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
+      'https://shop-fcfad-default-rtdb.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
 
     )
         .then((http.Response response) {
@@ -164,7 +165,7 @@ class ProductsModel extends ConnectedProductsModel {
     notifyListeners();
     return http
         .get(
-            'https://flutter-products-1c263.firebaseio.com/products.json?auth=${_authenticatedUser.token}')
+            'https://shop-fcfad-default-rtdb.firebaseio.com/products.json?auth=${_authenticatedUser.token}')
         .then<Null>((http.Response response) {
       final List<Product> fetchedProductList = [];
       final Map<String, dynamic> productListData = json.decode(response.body);
@@ -251,13 +252,13 @@ class UserModel extends ConnectedProductsModel {
     http.Response response;
     if (mode == AuthMode.Login) {
       response = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBkYteOsVx11Tl7zTbAB0rLOCQnUI5JAjw',
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAwIKM9k4HoxLoLK4wc_1hIbxFm7EZhKrc',
         body: json.encode(authData),
         headers: {'Content-Type': 'application/json'},
       );
     } else {
       response = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBkYteOsVx11Tl7zTbAB0rLOCQnUI5JAjw',
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyAwIKM9k4HoxLoLK4wc_1hIbxFm7EZhKrc',
         body: json.encode(authData),
         headers: {'Content-Type': 'application/json'},
       );
